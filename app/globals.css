@@ -43,6 +43,12 @@ section {
   grid-template-columns: 5fr 0.2fr 1fr;
 }
 
+@media (max-width: 750px) {
+  .main-grid {
+    display: flex;
+  }
+}
+
 .home {
   margin: auto;
   writing-mode: vertical-lr;
@@ -93,26 +99,22 @@ a:hover::after {
   @apply uppercase text-sm text-start float-left pt-[2px];
 }
 
-.data::after {
-  content: "";
-  position: absolute;
-  width: 5vw;
-  height: 1px;
-  background: #7f7f7f;
-  margin-top: 20px;
-  left: 31.6vw;
-  transition: all 0.3s ease-in-out;
-}
-
-.data:hover::after {
-  width: 2vw;
-}
-
-
 .stack {
   @apply items-center flex flex-row
 }
 
 .stack span {
   @apply mb-5
+}
+
+@media (max-width: 820px) {
+  .sec {
+    gap: 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  .sec {
+    gap: 0;
+  }
 }
