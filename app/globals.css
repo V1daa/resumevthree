@@ -4,16 +4,8 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
+  --background-start-rgb: 255, 255, 255;
   --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
 }
 
 body {
@@ -23,11 +15,79 @@ body {
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)) no-repeat;
+  @apply transition-all ease-in-out duration-200;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+
+
+html {
+  scroll-snap-points-y: repeat(100vh);
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  overflow-x: hidden
+}
+
+section {
+  @apply w-full h-[100vh];
+  scroll-snap-align: start;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 5fr 0.2fr 1fr;
+}
+
+.home {
+  margin: auto;
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  text-transform: uppercase;
+}
+
+a::after {
+  content: attr(data-text);
+  position: absolute;
+  right: -8px;
+  line-height: 0px;
+  transform: translateX(100%);
+  font-size: 80px;
+  transition: all 0.3s linear;
+  opacity: 20;
+  text-transform: uppercase;
+}
+
+a:hover::after {
+  transform: translateX(-100%);
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+  -o-animation-play-state: paused;
+  animation-play-state: paused;
+  opacity: 100%;
+}
+
+.square {
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid black;
+}
+
+.active {
+  transition: all 0.5s ease-in-out;
+  background: black;
+}
+
+.img::before {
+  content: '';
+  position: absolute;
+  height: 1px;
+  width: 100vw;
+  top: 150px;
+  @apply bg-gray-200
 }

@@ -1,112 +1,149 @@
+"use client";
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+
+const images = ['1.avif', '2.avif', '3.avif', '4.avif']
+
 
 export default function Home() {
+  const [dark, setDark] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [page, setPage] = useState(0);
+  const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      //@ts-ignore
+        setImage(images[Math.floor(Math.random() * images.length)]);
+    }, 8000)
+    
+    return () => clearInterval(intervalId);
+}, [])
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const handleScroll = () => {
+    const position = window.scrollY;
+    if (position > 500) {
+      setPage(1);
+    } else if (position > 1000) {
+      setPage(2);
+    } else {
+      setPage(0);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className={`${dark ? "dark" : ""}`}>
+      <div className="dark:bg-black dark:text-white">
+        <section className="main-grid items-center">
+        <button
+          className="fixed top-0 w-14 h-14 bg-black text-white rounded-[50%] dark:bg-white dark:text-black m-4 hover:rounded-md transition-all duration-200"
+          onClick={() => setDark(!dark)}
+        >
+          DARK
+        </button>
+          <div
+            className={`w-full h-full flex items-center flex-col justify-center transition-all ${
+              isHovered ? "opacity-0" : ""
+            }`}
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            <div
+              style={{
+                backgroundImage: `url(${image})`,
+              }}
+              className="w-full bg-cover h-[25%] flex items-center justify-center img"
+            >
+              <Image
+                className="mr-[20vw] absolute pt-[10vh] dark:invert"
+                src={`graphic.svg`}
+                alt=""
+                width={1000}
+                height={1000}
+              />
+            </div>
+            <div className="pt-10 flex flex-row gap-[30vw] w-full ml-10">
+              <div className="flex flex-col gap-2">
+              <h1 className="uppercase">Dmytro Volianskyi</h1>
+              <h1 className="text-gray-400">Full-Stack Developer & UI|UX Designer</h1>
+              </div>
+              <h1 className=" max-w-64 text-sm uppercase pt-16">Every project is a challenge to do better i have ever done</h1>
+            </div>
+          </div>
+          <div className="h-[100vh] bg-gray-200 w-[1px]"></div>
+          <div className="flex flex-col gap-10 ml-20">
+            <Link
+              href={""}
+              className="menu"
+              data-text="Home"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className={`home ${isHovered ? "opacity-10" : ""}`}>
+                Home
+              </div>
+            </Link>
+            <Link
+              href={""}
+              className="menu"
+              data-text="About"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className={`home ${isHovered ? "opacity-10" : ""}`}>
+                About
+              </div>
+            </Link>
+            <Link
+              href={""}
+              className="menu"
+              data-text="Project"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className={`home ${isHovered ? "opacity-10" : ""}`}>
+                Project
+              </div>
+            </Link>
+          </div>
+        </section>
+        <div className="fixed bottom-10 w-full flex flex-row items-baseline justify-center">
+          <div className="flex justify-start w-full ml-20 gap-20 text-sm">
+          <h3>Social:</h3>
+          <h3>/TELEGRAM</h3>
+          <h3>/GITHUB</h3>
+          <h3>/LEETCODE</h3>
+          </div>
+          <ul className="flex flex-row gap-5 w-full mr-20 ">
+            <li
+              className={`${page === 0 ? "active" : ""} square dark:invert`}
+            ></li>
+            <li
+              className={`${page === 1 ? "active" : ""} square dark:invert`}
+            ></li>
+            <li
+              className={`${page === 2 ? "active" : ""} square dark:invert`}
+            ></li>
+          </ul>
         </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+        <section className=" bg-white text-black dark:bg-black dark:text-white">
+          Section 2
+        </section>
       </div>
     </main>
   );
