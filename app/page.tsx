@@ -153,21 +153,27 @@ export default function Home() {
             <div className="flex justify-start w-full ml-20 gap-20 text-sm max-xl:gap-10 max-sm:gap-2">
               <h3 className="l">Social:</h3>
               <Link href="https://t.me/v1daaaa" target="_blank" className="l">
-                <h3>/TELEGRAM</h3>
+                <h3 className="roll">
+                  <span data-text="/TELEGRAM">/TELEGRAM</span>
+                </h3>
               </Link>
               <Link
                 href="https://github.com/V1daa"
                 target="_blank"
                 className="l"
               >
-                <h3>/GITHUB</h3>
+                <h3 className="roll">
+                  <span data-text="/GITHUB">/GITHUB</span>
+                </h3>
               </Link>
               <Link
                 href="https://leetcode.com/u/ViDa-la-ViDA/"
                 target="_blank"
                 className="l"
               >
-                <h3>/LEETCODE</h3>
+                <h3 className="roll">
+                  <span data-text="/LEETCODE">/LEETCODE</span>
+                </h3>
               </Link>
             </div>
             <ul className="flex flex-row gap-5 w-full mr-20 max-xl:hidden ">
