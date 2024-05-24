@@ -67,7 +67,7 @@ export default function Home() {
       },
       x: "-800%",
       duration: 0.1,
-      ease: 'bounce'
+      ease: "bounce",
     });
   }, []);
 
@@ -140,7 +140,7 @@ export default function Home() {
               </div>
             </Link>
             <Link
-              href={""}
+              href="#project"
               className="menu"
               data-text="Project"
               onMouseEnter={handleMouseEnter}
@@ -232,7 +232,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="flex items-center justify-center">
+        <section className="flex items-center justify-center" id="project">
           <div
             className={`flex items-center justify-center flex-col gap-10 ${
               isHovered ? "opacity-0" : ""
