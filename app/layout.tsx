@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat as Inter } from "next/font/google";
+import { Oswald as Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { Cursor } from "@/components/Cursor";

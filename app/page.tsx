@@ -65,7 +65,7 @@ export default function Home() {
         trigger: ".sec",
         toggleActions: "restart reverse restart reverse",
       },
-      x: "-800%",
+      x: "-900%",
       duration: 0.1,
       ease: "bounce",
     });
