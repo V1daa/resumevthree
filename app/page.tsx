@@ -84,7 +84,7 @@ export default function Home() {
           </button>
           <div
             className={`w-full h-full flex items-center flex-col justify-center transition-all ${
-              isHovered ? "opacity-0" : ""
+              isHovered ? "opacity-10" : ""
             }`}
           >
             <div
@@ -117,7 +117,6 @@ export default function Home() {
           <div className="flex flex-col gap-10 ml-20 fixed right-36 max-xl:hidden">
             <Link
               href="#main"
-              scroll={true}
               className="menu"
               data-text="Home"
               onMouseEnter={handleMouseEnter}
@@ -129,7 +128,6 @@ export default function Home() {
             </Link>
             <Link
               href="#about"
-              scroll={true}
               className="menu"
               data-text="About"
               onMouseEnter={handleMouseEnter}
@@ -191,7 +189,7 @@ export default function Home() {
         >
           <div
             className={` bg-gray-200 h-full w-auto flex justify-center flex-col gap-5 p-10 align-baseline max-sm:p-1 main ${
-              isHovered ? "opacity-0" : ""
+              isHovered ? "opacity-10" : ""
             }`}
           >
             <h1 className="text-4xl dark:text-black">DATA</h1>
@@ -215,7 +213,7 @@ export default function Home() {
           </div>
           <div
             className={`bg-black text-white h-full w-[250px] flex justify-center flex-col gap-5 pl-10 align-baseline main ${
-              isHovered ? "opacity-0" : ""
+              isHovered ? "opacity-10" : ""
             }`}
           >
             <h1 className="text-4xl dark:text-white ">STACK</h1>
@@ -235,7 +233,7 @@ export default function Home() {
         <section className="flex items-center justify-center" id="project">
           <div
             className={`flex items-center justify-center flex-col gap-10 ${
-              isHovered ? "opacity-0" : ""
+              isHovered ? "opacity-10" : ""
             }`}
           >
             <h1 className="text-5xl font-bold">BOARDY</h1>

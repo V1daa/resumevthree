@@ -30,6 +30,7 @@ html {
   overflow-x: hidden;
   scroll-snap-stop: always;
   overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 section {
