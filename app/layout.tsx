@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat as Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import { Cursor } from "@/components/Cursor";
 
 const inter = Inter({ weight: "500", subsets: ["latin"] });
 
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Cursor className=' dark:bg-white' />
         {children}
         <Analytics />
       </body>

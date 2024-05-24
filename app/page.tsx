@@ -1,8 +1,11 @@
 "use client";
 
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect,  useState } from "react";
+import { useEffect, useState } from "react";
 
 const images = ["1.avif", "2.avif", "3.avif", "4.avif"];
 
@@ -48,6 +51,25 @@ export default function Home() {
     };
   }, []);
 
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from(".main", {
+      scrollTrigger: {
+        trigger: ".main",
+        toggleActions: "restart none none reverse",
+      },
+      y: "90%",
+    });
+    gsap.to(".l", {
+      scrollTrigger: {
+        trigger: ".sec",
+        toggleActions: "restart reverse restart reverse",
+      },
+      x: "-800%",
+      duration: 0.1,
+      ease: 'bounce'
+    });
+  }, []);
 
   return (
     <main className={`${dark ? "dark" : ""}`}>
@@ -77,7 +99,6 @@ export default function Home() {
                 alt=""
                 width={1000}
                 height={1000}
-                
               />
             </div>
             <div className="pt-10 flex flex-row gap-[30vw] w-full ml-10 max-xl:gap-[20vw]">
@@ -87,9 +108,7 @@ export default function Home() {
                   Full-Stack Developer & UI|UX Designer
                 </h1>
               </div>
-              <h1
-                className="text max-w-64 text-sm uppercase pt-16 text max-md:hidden"
-              >
+              <h1 className="text max-w-64 text-sm uppercase pt-16 text max-md:hidden">
                 Every project is a challenge to do better i have ever done
               </h1>
             </div>
@@ -134,14 +153,22 @@ export default function Home() {
           </div>
           <div className="fixed bottom-10 w-full flex flex-row items-baseline justify-center">
             <div className="flex justify-start w-full ml-20 gap-20 text-sm max-xl:gap-10 max-sm:gap-2">
-              <h3>Social:</h3>
-              <Link href="https://t.me/v1daaaa" target="_blank">
+              <h3 className="l">Social:</h3>
+              <Link href="https://t.me/v1daaaa" target="_blank" className="l">
                 <h3>/TELEGRAM</h3>
               </Link>
-              <Link href="https://github.com/V1daa" target="_blank">
+              <Link
+                href="https://github.com/V1daa"
+                target="_blank"
+                className="l"
+              >
                 <h3>/GITHUB</h3>
               </Link>
-              <Link href="https://leetcode.com/u/ViDa-la-ViDA/" target="_blank">
+              <Link
+                href="https://leetcode.com/u/ViDa-la-ViDA/"
+                target="_blank"
+                className="l"
+              >
                 <h3>/LEETCODE</h3>
               </Link>
             </div>
@@ -163,7 +190,7 @@ export default function Home() {
           id="about"
         >
           <div
-            className={` bg-gray-200 h-full w-auto flex justify-center flex-col gap-5 p-10 align-baseline max-sm:p-1 ${
+            className={` bg-gray-200 h-full w-auto flex justify-center flex-col gap-5 p-10 align-baseline max-sm:p-1 main ${
               isHovered ? "opacity-0" : ""
             }`}
           >
@@ -187,7 +214,7 @@ export default function Home() {
             </div>
           </div>
           <div
-            className={`bg-black text-white h-full w-[250px] flex justify-center flex-col gap-5 pl-10 align-baseline ${
+            className={`bg-black text-white h-full w-[250px] flex justify-center flex-col gap-5 pl-10 align-baseline main ${
               isHovered ? "opacity-0" : ""
             }`}
           >
@@ -216,7 +243,7 @@ export default function Home() {
               <Link href="https://board-eight-blush.vercel.app/">
                 <Image
                   src={"/board3.jpg"}
-                  className="hover:scale-125 transition-all cursor-pointer"
+                  className="hover:scale-125 transition-all"
                   alt=""
                   width={700}
                   height={700}
@@ -225,7 +252,7 @@ export default function Home() {
               <Link href="https://board-eight-blush.vercel.app/">
                 <Image
                   src={"/board2.jpg"}
-                  className="hover:scale-125 transition-all cursor-pointer"
+                  className="hover:scale-125 transition-all"
                   alt=""
                   width={700}
                   height={700}
