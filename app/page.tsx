@@ -1,6 +1,7 @@
 "use client";
 
 import Magnetic from "@/components/Magnetic";
+import { animatePageIn } from "@/utils/animations";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
