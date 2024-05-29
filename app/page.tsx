@@ -1,5 +1,6 @@
 "use client";
 
+import Magnetic from "@/components/Magnetic";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
@@ -82,6 +83,7 @@ export default function Home() {
           >
             DARK
           </button>
+
           <div
             className={`w-full h-full flex items-center flex-col justify-center transition-all ${
               isHovered ? "opacity-10" : ""
@@ -115,39 +117,45 @@ export default function Home() {
           </div>
           <div className="h-[100vh] bg-gray-200 w-[1px]"></div>
           <div className="flex flex-col gap-10 ml-20 fixed right-36 max-xl:hidden">
-            <Link
-              href="#main"
-              className="menu"
-              data-text="Home"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className={`home ${isHovered ? "opacity-10" : ""}`}>
-                Home
-              </div>
-            </Link>
-            <Link
-              href="#about"
-              className="menu"
-              data-text="About"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className={`home ${isHovered ? "opacity-10" : ""}`}>
-                About
-              </div>
-            </Link>
-            <Link
-              href="#project"
-              className="menu"
-              data-text="Project"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className={`home ${isHovered ? "opacity-10" : ""}`}>
-                Project
-              </div>
-            </Link>
+            <Magnetic>
+              <Link
+                href="#main"
+                className="menu"
+                data-text="Home"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <div className={`home ${isHovered ? "opacity-10" : ""}`}>
+                  Home
+                </div>
+              </Link>
+            </Magnetic>
+            <Magnetic>
+              <Link
+                href="#about"
+                className="menu"
+                data-text="About"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <div className={`home ${isHovered ? "opacity-10" : ""}`}>
+                  About
+                </div>
+              </Link>
+            </Magnetic>
+            <Magnetic>
+              <Link
+                href="#project"
+                className="menu"
+                data-text="Project"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <div className={`home ${isHovered ? "opacity-10" : ""}`}>
+                  Project
+                </div>
+              </Link>
+            </Magnetic>
           </div>
           <div className="fixed bottom-10 w-full flex flex-row items-baseline justify-center">
             <div className="flex justify-start w-full ml-20 gap-20 text-sm max-xl:gap-10 max-sm:gap-2">
@@ -253,6 +261,7 @@ export default function Home() {
                   height={700}
                 />
               </Link>
+
               <Link href="https://board-eight-blush.vercel.app/">
                 <Image
                   src={"/board2.jpg"}
