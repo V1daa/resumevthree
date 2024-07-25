@@ -45,7 +45,21 @@ export default function Home() {
     }
   };
 
+  const handleDark = () => {
+    if (localStorage) {
+      localStorage.setItem("theme", JSON.stringify(!dark));
+      setDark(!dark);
+    }
+  };
+
   useEffect(() => {
+    if (localStorage) {
+      if (!localStorage.getItem("theme")) {
+        localStorage.setItem("theme", "false");
+      } else {
+        setDark(JSON.parse(localStorage.getItem("theme") as string));
+      }
+    }
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
@@ -79,7 +93,7 @@ export default function Home() {
         <section className="main-grid items-center" id="main">
           <button
             className="z-50 fixed top-0 w-14 h-14 bg-black text-white rounded-[50%] dark:bg-white dark:text-black m-4 hover:rounded-md transition-all duration-200"
-            onClick={() => setDark(!dark)}
+            onClick={handleDark}
             id="image"
           >
             DARK
@@ -94,6 +108,7 @@ export default function Home() {
               style={{
                 backgroundImage: `url(${image})`,
               }}
+              
               className="w-full bg-cover h-[25%] flex items-center justify-center img"
             >
               <Image
